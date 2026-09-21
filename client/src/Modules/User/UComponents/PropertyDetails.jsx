@@ -19,7 +19,7 @@ export default function PropertyDetails() {
     const token = localStorage.getItem("UserToken");
 
     axios.post(
-      "https:/ /rentease-backend-m0bo.onrender.com/request/addrequest",
+      "https://rentease-backend-m0bo.onrender.com/request/addrequest",
       { propertyId: id },
       { headers: { Authorization: `Bearer ${token}` } }
     )
