@@ -113,6 +113,10 @@ export default function TopBar() {
                   My House
                 </MenuItem>
 
+                {/* <MenuItem onClick={() => navigate("/paymenthistory")}>
+                  Payment History
+                </MenuItem> */}
+
                 <MenuItem onClick={handleLogout}>
                   Logout
                 </MenuItem>

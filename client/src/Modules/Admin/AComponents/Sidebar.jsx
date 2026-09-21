@@ -31,7 +31,9 @@ export default function Sidebar() {
     { label: "Dashboard", path: "/Admin/" },
     { label: "Add Property", path: "/Admin/addproperty" },
     { label: "View Properties", path: "/Admin/viewproperty" },
-    { label: "View Requests", path: "/Admin/viewrequests" }
+    { label: "View Requests", path: "/Admin/viewrequests" },  
+    { label: "Payments", path: "/Admin/payments" }
+
   ];
 
   return (

@@ -189,11 +189,19 @@ export default function BrowseProperty() {
             }}
           >
             <img
-              src={`http://localhost:7000/image/${item.propertyimage}`}
-              width="100%"
-              height="220"
-              style={{ objectFit: "cover" }}
-            />
+  src={
+    item.propertyimages?.length
+      ? `http://localhost:7000/image/${item.propertyimages[0]}`
+      : `http://localhost:7000/image/${item.propertyimage}`
+  }
+  alt={item.title}
+  style={{
+    width: "240px",
+    height: "175px",
+    objectFit: "cover",
+    borderRadius: "10px"
+  }}
+/>
 
             <div style={{ padding: "18px" }}>
               <h2>{item.title}</h2>

@@ -1,51 +1,6 @@
 const Request = require("../Models/RequestModel");
 const Property = require("../Models/PropertyModel");
 
-// ADD REQUEST
-// const addRequest = async (req, res) => {
-//   try {
-
-//     // this prevents duplicate
-//     const existingRequest = await Request.findOne({
-//       propertyId: req.body.propertyId,
-//       user: req.user.id
-//     });
-
-//     if (existingRequest) {
-//       return res.status(400).send({
-//         success: false,
-//         message: "You have already requested this property"
-//       });
-//     }
-//     if (property.status === "rented") {
-//   return res.status(400).send({
-//     success: false,
-//     message: "Property already rented"
-//   });
-// }
-//     // 👇 THIS WAS YOUR ORIGINAL CODE (leave it as it is)
-//     const data = new Request({
-//       propertyId: req.body.propertyId,
-//       tenantName: req.body.tenantName,
-//       user: req.user.id
-//     });
-
-//     const result = await data.save();
-
-//     res.send({
-//       success: true,
-//       message: "Request added successfully",
-//       data: result
-//     });
-
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "Error adding request"
-//     });
-//   }
-// };
 
 
 
@@ -83,7 +38,7 @@ const addRequest = async (req, res) => {
 
     const data = new Request({
       propertyId: req.body.propertyId,
-      tenantName: req.body.tenantName,
+     
       user: req.user.id
     });
 
@@ -108,7 +63,9 @@ const addRequest = async (req, res) => {
 // GET ALL REQUESTS
 const getRequests = async (req, res) => {
   try {
-    const data = await Request.find().populate("propertyId");
+    const data = await Request.find()
+    .populate("propertyId")
+    .populate("user", "name email phone");
     res.send(data);
   } catch (error) {
     console.log(error);
@@ -156,7 +113,8 @@ const getMyHouse = async (req, res) => {
     const data = await Request.find({
       user: req.user.id,
       status: "approved"
-    }).populate("propertyId");
+    }).populate("propertyId")
+      .populate("user");
 
     res.send({
       success: true,
@@ -172,9 +130,29 @@ const getMyHouse = async (req, res) => {
   }
 };
 
+
+const getUserRequests = async (req, res) => {
+  try {
+    const requests = await Request.find({
+      user: req.user.id
+    }).populate("propertyId")
+      .populate("user")
+
+    res.send({
+      success: true,
+      data: requests
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.send({ success: false });
+  }
+};
+
 module.exports = {
   addRequest,
   getRequests,
   updateRequestStatus,
-  getMyHouse 
+  getMyHouse,
+  getUserRequests 
 };

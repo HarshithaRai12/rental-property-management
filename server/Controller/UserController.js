@@ -35,6 +35,8 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
 
+    console.log("LOGIN BODY:", req.body); // ✅ DEBUG
+
     const user = await User.findOne({
       email: req.body.email,
       password: req.body.password
@@ -50,7 +52,7 @@ const loginUser = async (req, res) => {
       res.send({
         success: true,
         token: token,
-        username: user.name
+        user: user   // ✅ IMPORTANT FIX (you were sending username instead)
       });
 
     } else {
@@ -61,10 +63,13 @@ const loginUser = async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error);
+    console.log("LOGIN ERROR:", error);   // ✅ THIS WAS MISSING
+    res.status(500).send({
+      success: false,
+      message: "Server error during login"
+    });
   }
 };
-
 const getProfile = async (req, res) => {
   try {
     console.log("Decoded user:", req.user); // 🔥 DEBUG
@@ -92,8 +97,42 @@ const getProfile = async (req, res) => {
   }
 }; 
 
+const updateProfile = async (req, res) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    req.body,
+    { new: true }
+  );
+
+  res.send({ success: true, user: updatedUser });
+};
+
+
+const uploadProfileImage = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { profileImage: req.file.filename },
+      { new: true }
+    );
+
+    res.send({
+      success: true,
+      user
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Image upload failed"
+    });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
-  getProfile
+  getProfile,
+  updateProfile,
+  uploadProfileImage   
 };

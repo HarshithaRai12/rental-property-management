@@ -10,6 +10,10 @@ import FAQ from "../UComponents/FAQ";
 import PropertyDetails from "../UComponents/PropertyDetails";
 import MyProfile from "../UComponents/MyProfile";
 import MyHouse from "../UComponents/MyHouse";
+import Payment from "../UComponents/Payment";
+import Receipt from "../UComponents/Receipt";
+import PaymentHistory from "../UComponents/PaymentHistory";
+
 
 export default function UserRoute() {
   return (
@@ -20,9 +24,13 @@ export default function UserRoute() {
       <Route path="/profile" element={<MyProfile />} />
       <Route path="/userlogin" element={<UserLogin />} />
       <Route path="/myrequests" element={<MyRequests />} />
+      
       <Route path="/about" element={<About />} />
       <Route path="/property/:id" element={<PropertyDetails />} />
       <Route path="/myhouse" element={<MyHouse />} />
+      <Route path="/payment" element={<Payment />} />
+      <Route path="/receipt" element={<Receipt />} />
+      <Route path="/paymenthistory" element={<PaymentHistory />} />
       <Route path="/faq" element={<FAQ />} />
     </Routes>
   )

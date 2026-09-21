@@ -7,6 +7,9 @@ import AddProperty from "../AComponents/AddProperty";
 import ViewProperty from "../AComponents/ViewProperty";
 import ViewRequests from "../AComponents/ViewRequests";
 import AdminLogin from "../AComponents/AdminLogin";
+import UpdateProperty from "../AComponents/UpdateProperty";
+import AdminPayments from "../AComponents/AdminPayments";
+
 
 export default function AdminRoute() {
   return (
@@ -22,6 +25,9 @@ export default function AdminRoute() {
         <Route path="addproperty" element={<AddProperty />} />
         <Route path="viewproperty" element={<ViewProperty />} />
         <Route path="viewrequests" element={<ViewRequests />} />
+        <Route path="updateproperty" element={<UpdateProperty />} />
+        <Route path="/payments" element={<AdminPayments />} />
+        
 
       </Route>
 

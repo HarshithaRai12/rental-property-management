@@ -24,7 +24,8 @@ app.use("/property", require("./Routes/PropertyRoutes"));
 app.use("/request", require("./Routes/RequestRoutes"));
 app.use("/admin", require("./Routes/AdminRoutes"));
 app.use("/user", require("./Routes/UserRoutes"));
-// app.use("/payment", require("./Routes/PaymentRoutes"));
+app.use("/payment", require("./Routes/PaymentRoutes"));
+
 
 app.listen(PORTNUMBER, () => {
   console.log(`Server is running on port ${PORTNUMBER}`);

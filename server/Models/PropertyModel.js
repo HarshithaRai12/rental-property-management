@@ -7,7 +7,13 @@ const propertyschema = new mongoose.Schema({
   type: { type: String }, // 1BHK, 2BHK
   description: { type: String },
 
-  propertyimage: { type: String },
+  // ✅ MULTIPLE IMAGES
+  propertyimages: [{ type: String }],
+
+  bedrooms: Number,
+  bathrooms: Number,
+  area: Number,
+  furnishing: String,
 
   status: {
     type: String,
@@ -20,4 +26,7 @@ const propertyschema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Property", propertyschema);
+// ✅ FIX: prevent OverwriteModelError
+module.exports =
+  mongoose.models.Property ||
+  mongoose.model("Property", propertyschema);

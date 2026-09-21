@@ -5,7 +5,14 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   phone: String,
-  address: String
-});
+  address: String,
+
+  // ✅ ADD THIS
+  profileImage: {
+    type: String,
+    default: ""
+  }
+
+}, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
