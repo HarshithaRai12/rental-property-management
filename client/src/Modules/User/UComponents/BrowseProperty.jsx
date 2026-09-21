@@ -14,7 +14,7 @@ export default function BrowseProperty() {
 
   // ✅ FETCH FUNCTION (NEW)
   const fetchProperties = () => {
-    axios.get("http://localhost:7000/property/getproperties")
+    axios.get("https://rentease-backend-m0bo.onrender.com/property/getproperties")
       .then((res) => {
         setProperties(res.data);
       })
@@ -42,7 +42,7 @@ export default function BrowseProperty() {
 
     try {
       const res = await axios.post(
-        "http://localhost:7000/request/addrequest",
+        "https://rentease-backend-m0bo.onrender.com/request/addrequest",
         {
           propertyId: propertyId,
           tenantName: username
@@ -191,8 +191,8 @@ export default function BrowseProperty() {
             <img
   src={
     item.propertyimages?.length
-      ? `http://localhost:7000/image/${item.propertyimages[0]}`
-      : `http://localhost:7000/image/${item.propertyimage}`
+      ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimages[0]}`
+      : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimage}`
   }
   alt={item.title}
   style={{

@@ -68,7 +68,7 @@ cardNumber: cardNumber,
 };
 
       const res = await axios.post(
-        "http://localhost:7000/payment/pay",
+        "https://rentease-backend-m0bo.onrender.com/payment/pay",
         paymentData
       );
 

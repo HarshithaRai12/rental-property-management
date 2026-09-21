@@ -19,7 +19,7 @@ export default function AdminLogin() {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:7000/admin/login", login)
+      .post("https://rentease-backend-m0bo.onrender.com/admin/login", login)
       .then((res) => {
         if (res.data.success) {
           localStorage.setItem("AdminToken", res.data.token);

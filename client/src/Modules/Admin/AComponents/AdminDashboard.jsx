@@ -6,11 +6,11 @@ export default function AdminDashboard() {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:7000/property/getproperties")
+    axios.get("https://rentease-backend-m0bo.onrender.com/property/getproperties")
       .then(res => setProperties(res.data))
       .catch(err => console.log(err));
 
-    axios.get("http://localhost:7000/request/getrequests")
+    axios.get("https://rentease-backend-m0bo.onrender.com/request/getrequests")
       .then(res => setRequests(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -94,8 +94,8 @@ export default function AdminDashboard() {
                     <img
                       src={
                         item.propertyId?.propertyimages?.length > 0
-                          ? `http://localhost:7000/image/${item.propertyId.propertyimages[0]}`
-                          : `http://localhost:7000/image/${item.propertyId?.propertyimage}`
+                          ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
+                          : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId?.propertyimage}`
                       }
                       alt=""
                       style={styles.propImg}

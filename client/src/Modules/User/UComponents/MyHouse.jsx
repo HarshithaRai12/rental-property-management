@@ -13,7 +13,7 @@ export default function MyHouse() {
       navigate("/userlogin")
       return  
     }
-    axios.get("http://localhost:7000/request/myhouse", {
+    axios.get("https://rentease-backend-m0bo.onrender.com/request/myhouse", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((res) => setHouse(res.data.data))
@@ -92,8 +92,8 @@ export default function MyHouse() {
             <img
               src={
                 item.propertyId.propertyimages?.length
-                  ? `http://localhost:7000/image/${item.propertyId.propertyimages[0]}`
-                  : `http://localhost:7000/image/${item.propertyId.propertyimage}`
+                  ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
+                  : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimage}`
               }
               alt={item.propertyId.title}
               style={{

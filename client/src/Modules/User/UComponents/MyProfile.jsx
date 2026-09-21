@@ -12,7 +12,7 @@ export default function MyProfile() {
 
   useEffect(() => {
     const token = localStorage.getItem("UserToken");
-    axios.get("http://localhost:7000/user/getprofile", {
+    axios.get("https://rentease-backend-m0bo.onrender.com/user/getprofile", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((res) => {
@@ -25,7 +25,7 @@ export default function MyProfile() {
       })
       .catch((err) => console.log(err));
 
-       axios.get("http://localhost:7000/request/myrequests", {
+       axios.get("https://rentease-backend-m0bo.onrender.com/request/myrequests", {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -52,7 +52,7 @@ const approvedRequests = requests.filter(
     try {
       const token = localStorage.getItem("UserToken");
       const res = await axios.put(
-        "http://localhost:7000/user/updateprofile",
+        "https://rentease-backend-m0bo.onrender.com/user/updateprofile",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -89,7 +89,7 @@ const approvedRequests = requests.filter(
     const token = localStorage.getItem("UserToken");
 
     const res = await axios.put(
-      "http://localhost:7000/user/uploadprofileimage",
+      "https://rentease-backend-m0bo.onrender.com/user/uploadprofileimage",
       formData,
       {
         headers: {
@@ -175,7 +175,7 @@ const approvedRequests = requests.filter(
           <div style={{ position: "relative", marginBottom: "16px" }}>
             {user.profileImage ? (
               <img
-                src={`http://localhost:7000/image/${user.profileImage}`}
+                src={`https://rentease-backend-m0bo.onrender.com/image/${user.profileImage}`}
                 alt={user.name}
                 style={{
                   width: "120px", height: "120px",
@@ -349,7 +349,7 @@ const approvedRequests = requests.filter(
               }}>
                 {requests.length > 0 && requests[0]?.propertyId?.propertyimage && (
   <img
-    src={`http://localhost:7000/image/${requests[0].propertyId.propertyimage}`}
+    src={`https://rentease-backend-m0bo.onrender.com/image/${requests[0].propertyId.propertyimage}`}
     style={{ width: "100%", height: "100%", objectFit: "cover" }}
     alt=""
   />
@@ -487,7 +487,7 @@ function ActivityItem({ activity }) {
         }}>
           {activity.image && (
             <img
-              src={`http://localhost:7000/image/${activity.image}`}
+              src={`https://rentease-backend-m0bo.onrender.com/image/${activity.image}`}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               alt=""
             />

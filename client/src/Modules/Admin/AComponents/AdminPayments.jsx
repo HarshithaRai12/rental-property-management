@@ -7,7 +7,7 @@ export default function AdminPayments() {
 
   useEffect(() => {
 
-    axios.get("http://localhost:7000/payment/all")
+    axios.get("https://rentease-backend-m0bo.onrender.com/payment/all")
       .then((res) => {
 
         if (res.data.success) {

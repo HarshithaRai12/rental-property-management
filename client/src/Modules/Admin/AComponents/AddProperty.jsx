@@ -38,7 +38,7 @@ export default function AddProperty() {
     }
 
     try {
-      await axios.post("http://localhost:7000/property/addproperty", formData);
+      await axios.post("https://rentease-backend-m0bo.onrender.com/property/addproperty", formData);
       alert("Property Added Successfully");
     } catch (error) {
       console.log(error);

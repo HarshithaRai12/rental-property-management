@@ -11,7 +11,7 @@ export default function PaymentHistory() {
   useEffect(() => {
 
     axios.get(
-      "http://localhost:7000/payment/history/Harshitha Rai"
+      "https://rentease-backend-m0bo.onrender.com/payment/history/Harshitha Rai"
     )
     .then((res) => {
 

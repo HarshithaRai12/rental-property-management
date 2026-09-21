@@ -10,7 +10,7 @@ export default function PropertyDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7000/property/getproperty/${id}`)
+      .get(`https:/ /rentease-backend-m0bo.onrender.com/property/getproperty/${id}`)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -19,7 +19,7 @@ export default function PropertyDetails() {
     const token = localStorage.getItem("UserToken");
 
     axios.post(
-      "http://localhost:7000/request/addrequest",
+      "https:/ /rentease-backend-m0bo.onrender.com/request/addrequest",
       { propertyId: id },
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -77,8 +77,8 @@ export default function PropertyDetails() {
             <img
               src={
                 data.propertyimages?.length > 0
-                  ? `http://localhost:7000/image/${data.propertyimages[0]}`
-                  : `http://localhost:7000/image/${data.propertyimage}`
+                  ? `https:/ /rentease-backend-m0bo.onrender.com/image/${data.propertyimages[0]}`
+                  : `https:/ /rentease-backend-m0bo.onrender.com/image/${data.propertyimage}`
               }
               alt={data.title}
               style={{

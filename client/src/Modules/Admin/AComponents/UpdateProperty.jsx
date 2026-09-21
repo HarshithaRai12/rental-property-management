@@ -60,7 +60,7 @@ const handleUpdate = () => {
   }
 
   axios.put(
-    `http://localhost:7000/property/updateproperty/${propertydata._id}`,
+    `https://rentease-backend-m0bo.onrender.com/property/updateproperty/${propertydata._id}`,
     formData,
     { headers: { "Content-Type": "multipart/form-data" } }
   )

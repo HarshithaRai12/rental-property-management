@@ -15,7 +15,7 @@ export default function MyRequests() {
 useEffect(() => {
   const token = localStorage.getItem("UserToken"); // ✅ get token
 
-  axios.get("http://localhost:7000/request/myrequests", {
+  axios.get("https://rentease-backend-m0bo.onrender.com/request/myrequests", {
     headers: {
       Authorization: `Bearer ${token}` // ✅ send token
     }
@@ -131,8 +131,8 @@ useEffect(() => {
                     <img
                       src={
                         item.propertyId.propertyimages?.length > 0
-                          ? `http://localhost:7000/image/${item.propertyId.propertyimages[0]}`
-                          : `http://localhost:7000/image/${item.propertyId.propertyimage}`
+                          ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
+                          : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimage}`
                       }
                       alt={item.propertyId.title}
                       style={{
@@ -144,6 +144,8 @@ useEffect(() => {
                     />
                   )}
                   
+
+              
                 </div>
 
                 {/* Details */}

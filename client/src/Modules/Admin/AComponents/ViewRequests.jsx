@@ -6,7 +6,7 @@
 //   const [requests, setRequests] = useState([])
 
 //   useEffect(() => {
-//     axios.get("http://localhost:7000/request/getrequests")
+//     axios.get("https://rentease-backend-m0bo.onrender.com/request/getrequests")
 //       .then((res) => {
 //         setRequests(res.data)
 //       })
@@ -16,7 +16,7 @@
 //   }, [])
 
 //   const handleStatus = (id, status) => {
-//     axios.put(`http://localhost:7000/request/updatestatus/${id}`, { status })
+//     axios.put(`https://rentease-backend-m0bo.onrender.com/request/updatestatus/${id}`, { status })
 //       .then(() => {
 //         alert("Status Updated")
 //         setRequests(prev =>
@@ -70,8 +70,8 @@
 //                   <img
 //                     src={
 //                       item.propertyId.propertyimages?.length > 0
-//                         ? `http://localhost:7000/image/${item.propertyId.propertyimages[0]}`
-//                         : `http://localhost:7000/image/${item.propertyId.propertyimage}`
+//                         ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
+//                         : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimage}`
 //                     }
 //                     alt=""
 //                     style={{
@@ -219,13 +219,13 @@ export default function ViewRequests() {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    axios.get("http://localhost:7000/request/getrequests")
+    axios.get("https://rentease-backend-m0bo.onrender.com/request/getrequests")
       .then((res) => setRequests(res.data))
       .catch((err) => console.log(err))
   }, [])
 
   const handleStatus = (id, status) => {
-    axios.put(`http://localhost:7000/request/updatestatus/${id}`, { status })
+    axios.put(`https://rentease-backend-m0bo.onrender.com/request/updatestatus/${id}`, { status })
       .then(() => {
         alert("Status Updated")
         setRequests(prev =>
@@ -336,8 +336,8 @@ export default function ViewRequests() {
                     <img
                       src={
                         item.propertyId?.propertyimages?.length > 0
-                          ? `http://localhost:7000/image/${item.propertyId.propertyimages[0]}`
-                          : `http://localhost:7000/image/${item.propertyId?.propertyimage}`
+                          ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
+                          : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId?.propertyimage}`
                       }
                       alt=""
                       style={styles.propImg}

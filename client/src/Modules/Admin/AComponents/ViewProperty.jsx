@@ -11,14 +11,14 @@ export default function ViewProperty() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get("http://localhost:7000/property/getproperties")
+    axios.get("https://rentease-backend-m0bo.onrender.com/property/getproperties")
       .then((res) => setProperties(res.data))
       .catch((err) => console.log(err))
   }, [])
 
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this property?")) return
-    axios.delete(`http://localhost:7000/property/deleteproperty/${id}`)
+    axios.delete(`https://rentease-backend-m0bo.onrender.com/property/deleteproperty/${id}`)
       .then(() => {
         setProperties((prev) => prev.filter((item) => item._id !== id))
       })
@@ -127,8 +127,8 @@ export default function ViewProperty() {
               <img
                   src={
                     item.propertyimages?.length
-                      ? `http://localhost:7000/image/${item.propertyimages[0]}`
-                      : `http://localhost:7000/image/${item.propertyimage}`
+                      ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimages[0]}`
+                      : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimage}`
                   }
                 alt={item.title}
                 style={{
