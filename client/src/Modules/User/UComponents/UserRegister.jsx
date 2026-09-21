@@ -22,7 +22,7 @@ export default function UserRegister() {
   }
 
   const handleRegister = () => {
-    axios.post("https:/ /rentease-backend-m0bo.onrender.com/user/register", form)
+    axios.post("https://rentease-backend-m0bo.onrender.com/user/register", form)
       .then((res) => {
         if (res.data.success) {
           alert("Registered Successfully")
