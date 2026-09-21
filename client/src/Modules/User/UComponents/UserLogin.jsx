@@ -21,7 +21,7 @@ export default function UserLogin() {
     e.preventDefault(); // 🔥 VERY IMPORTANT
 
     axios
-      .post("https:/ /rentease-backend-m0bo.onrender.com/user/login", login)
+      .post("https://rentease-backend-m0bo.onrender.com/user/login", login)
       .then((res) => {
         if (res.data.success) {
           localStorage.setItem("UserToken", res.data.token);
