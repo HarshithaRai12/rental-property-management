@@ -3,7 +3,8 @@ const dbconnection = require("./db");
 const cors = require("cors");
 
 const app = express();
-const PORTNUMBER = 7000;
+// const PORTNUMBER = 7000;
+const PORTNUMBER = process.env.PORT || 7000;  // it means:- Locally → uses 7000  while Deployed → uses the port provided by the hosting service
 
 // middleware
 app.use(cors());
