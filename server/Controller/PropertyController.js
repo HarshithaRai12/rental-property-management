@@ -58,12 +58,19 @@ const addProperty = async (req, res) => {
     res.send(result);
 
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error adding property"
-    });
-  }
+  console.log("CLOUDINARY ERROR:", {
+    message: error.message,
+    http_code: error.http_code,
+    name: error.name,
+    request_id: error.request_id,
+    headers: error.http_headers
+  });
+
+  res.status(500).send({
+    success: false,
+    message: "Error adding property"
+  });
+}
 };
 
 
