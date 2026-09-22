@@ -1,31 +1,39 @@
 const Property = require("../Models/PropertyModel");
+const cloudinary = require("../cloudinary");
+
+// Upload image buffer to Cloudinary
+const uploadToCloudinary = (fileBuffer) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        folder: "rentease/properties"
+      },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result.secure_url);
+        }
+      }
+    );
+
+    stream.end(fileBuffer);
+  });
+};
+
 
 // ADD PROPERTY
-// const addProperty = async (req, res) => {
-//   try {
-//     const data = new Property({
-//       title: req.body.title,
-//       location: req.body.location,
-//       price: req.body.price,
-//       type: req.body.type,
-//       description: req.body.description,
-//       propertyimages: req.files.map(file => file.filename),
-//       ownerId: req.body.ownerId,
-//     });
-
-//     const result = await data.save();
-//     res.send(result);
-//   } catch (error) {
-//     console.log(error);
-//     res.send("Error adding property");
-//   }
-// };
-
 const addProperty = async (req, res) => {
   try {
-
     console.log("BODY:", req.body);
-    console.log("FILES:", req.files);   // 👈 ADD THIS
+    console.log("FILES:", req.files);
+
+    // Upload all images to Cloudinary
+    const imageUrls = req.files
+      ? await Promise.all(
+          req.files.map(file => uploadToCloudinary(file.buffer))
+        )
+      : [];
 
     const data = new Property({
       title: req.body.title,
@@ -34,7 +42,8 @@ const addProperty = async (req, res) => {
       type: req.body.type,
       description: req.body.description,
 
-      propertyimages: req.files ? req.files.map(file => file.filename) : [],
+      // Save Cloudinary URLs in MongoDB
+      propertyimages: imageUrls,
 
       bedrooms: req.body.bedrooms,
       bathrooms: req.body.bathrooms,
@@ -45,13 +54,19 @@ const addProperty = async (req, res) => {
     });
 
     const result = await data.save();
+
     res.send(result);
 
   } catch (error) {
     console.log(error);
-    res.send("Error adding property");
+    res.status(500).send({
+      success: false,
+      message: "Error adding property"
+    });
   }
 };
+
+
 // VIEW ALL PROPERTIES
 const getProperties = async (req, res) => {
   try {
@@ -59,16 +74,15 @@ const getProperties = async (req, res) => {
     res.send(data);
   } catch (error) {
     console.log(error);
-    res.send("Error fetching properties");
+    res.status(500).send("Error fetching properties");
   }
 };
 
+
 // UPDATE PROPERTY
-
-
 const updateProperty = async (req, res) => {
   try {
-    const id = req.params.rowid; // keep this only if your route is /updateproperty/:rowid
+    const id = req.params.rowid;
 
     let updatedData = {
       title: req.body.title,
@@ -82,16 +96,24 @@ const updateProperty = async (req, res) => {
       furnishing: req.body.furnishing
     };
 
-    // if new image uploaded
-if (req.files && req.files.length > 0) {
-  updatedData.propertyimages = req.files.map(file => file.filename);
-} else if (req.file) {
-  updatedData.propertyimages = [req.file.filename];
-} 
-    const result = await Property.findByIdAndUpdate(id, updatedData, {
-      new: true,
-      runValidators: true
-    });
+    // If new images are uploaded, send them to Cloudinary
+    if (req.files && req.files.length > 0) {
+
+      const imageUrls = await Promise.all(
+        req.files.map(file => uploadToCloudinary(file.buffer))
+      );
+
+      updatedData.propertyimages = imageUrls;
+    }
+
+    const result = await Property.findByIdAndUpdate(
+      id,
+      updatedData,
+      {
+        new: true,
+        runValidators: true
+      }
+    );
 
     if (!result) {
       return res.status(404).send({
@@ -105,30 +127,37 @@ if (req.files && req.files.length > 0) {
       message: "Property updated successfully",
       data: result
     });
+
   } catch (error) {
     console.log(error);
+
     res.status(500).send({
       success: false,
       message: "Error updating property"
     });
   }
 };
+
+
 // DELETE PROPERTY
 const deleteProperty = async (req, res) => {
   try {
     const id = req.params.rowid;
 
     await Property.findByIdAndDelete(id);
+
     res.send("Property deleted successfully");
+
   } catch (error) {
     console.log(error);
-    res.send("Error deleting property");
+    res.status(500).send("Error deleting property");
   }
 };
+
 
 module.exports = {
   addProperty,
   getProperties,
   updateProperty,
-  deleteProperty,
+  deleteProperty
 };

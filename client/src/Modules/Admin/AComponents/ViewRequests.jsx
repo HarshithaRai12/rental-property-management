@@ -336,9 +336,9 @@ export default function ViewRequests() {
                     <img
                       src={
                         item.propertyId?.propertyimages?.length > 0
-                          ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
-                          : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId?.propertyimage}`
-                      }
+                            ? item.propertyId.propertyimages[0]
+                            : item.propertyId?.propertyimage
+                    }
                       alt=""
                       style={styles.propImg}
                     />

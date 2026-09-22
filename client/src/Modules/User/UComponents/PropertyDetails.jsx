@@ -77,9 +77,9 @@ export default function PropertyDetails() {
             <img
               src={
                 data.propertyimages?.length > 0
-                  ? `https://rentease-backend-m0bo.onrender.com/image/${data.propertyimages[0]}`
-                  : `https://rentease-backend-m0bo.onrender.com/image/${data.propertyimage}`
-              }
+                ? data.propertyimages[0]
+                : data.propertyimage
+}
               alt={data.title}
               style={{
                 width: "100%",

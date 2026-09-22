@@ -91,9 +91,9 @@ export default function MyHouse() {
             {/* Property Image */}
             <img
               src={
-                item.propertyId.propertyimages?.length
-                  ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimages[0]}`
-                  : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyId.propertyimage}`
+                  item.propertyId?.propertyimages?.length
+                      ? item.propertyId.propertyimages[0]
+                      : item.propertyId?.propertyimage
               }
               alt={item.propertyId.title}
               style={{

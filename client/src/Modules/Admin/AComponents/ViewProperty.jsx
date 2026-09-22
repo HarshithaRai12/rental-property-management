@@ -127,9 +127,9 @@ export default function ViewProperty() {
               <img
                   src={
                     item.propertyimages?.length
-                      ? `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimages[0]}`
-                      : `https://rentease-backend-m0bo.onrender.com/image/${item.propertyimage}`
-                  }
+                        ? item.propertyimages[0]
+                        : item.propertyimage
+}
                 alt={item.title}
                 style={{
                   width: "240px", height: "175px",

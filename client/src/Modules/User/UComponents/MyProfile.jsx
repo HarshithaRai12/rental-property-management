@@ -349,7 +349,7 @@ const approvedRequests = requests.filter(
               }}>
                 {requests.length > 0 && requests[0]?.propertyId?.propertyimage && (
   <img
-    src={`https://rentease-backend-m0bo.onrender.com/image/${requests[0].propertyId.propertyimage}`}
+    src={requests[0].propertyId.propertyimage}
     style={{ width: "100%", height: "100%", objectFit: "cover" }}
     alt=""
   />
