@@ -136,13 +136,19 @@ const updateProperty = async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error);
+  console.log("CLOUDINARY UPDATE ERROR:", {
+    message: error.message,
+    http_code: error.http_code,
+    name: error.name,
+    request_id: error.request_id,
+    headers: error.http_headers
+  });
 
-    res.status(500).send({
-      success: false,
-      message: "Error updating property"
-    });
-  }
+  res.status(500).send({
+    success: false,
+    message: "Error updating property"
+  });
+}
 };
 
 
